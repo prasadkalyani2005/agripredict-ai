@@ -358,27 +358,39 @@ st.markdown("""
         padding-right: 1.1rem !important;
     }
 
-    /* Sidebar Buttons Base */
+    /* Sidebar Buttons — Full-width, left-aligned like ChatGPT nav */
     [data-testid="stSidebar"] div.stButton {
-        margin-bottom: 6px !important;
+        width: 100% !important;
+        margin-bottom: 4px !important;
     }
+    /* The <button> element itself */
     [data-testid="stSidebar"] div.stButton > button {
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
         justify-content: flex-start !important;
         width: 100% !important;
-        padding: 11px 16px !important;
-        border-radius: 12px !important;
+        padding: 10px 14px !important;
+        border-radius: 10px !important;
         border: none !important;
-        font-size: 1.05rem !important;
-        gap: 14px !important;
         cursor: pointer !important;
-        transition: all 0.15s ease-in-out !important;
+        transition: background 0.15s ease-in-out !important;
         text-align: left !important;
+        gap: 12px !important;
+    }
+    /* Inner wrapper div that Streamlit 1.64 renders inside <button> */
+    [data-testid="stSidebar"] div.stButton > button > div,
+    [data-testid="stSidebar"] div.stButton > button > span {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        text-align: left !important;
+        width: 100% !important;
+        gap: 12px !important;
     }
 
-    /* Active Sidebar Button (Primary) */
+    /* Active Sidebar Button (Primary — green pill) */
     [data-testid="stSidebar"] div.stButton > button[data-testid="stBaseButton-primary"],
     [data-testid="stSidebar"] div.stButton > button[kind="primary"] {
         background: #00874e !important;
@@ -392,11 +404,11 @@ st.markdown("""
         color: #ffffff !important;
     }
 
-    /* Inactive Sidebar Buttons (Secondary) */
+    /* Inactive Sidebar Buttons (Secondary — transparent) */
     [data-testid="stSidebar"] div.stButton > button[data-testid="stBaseButton-secondary"],
     [data-testid="stSidebar"] div.stButton > button[kind="secondary"] {
         background: transparent !important;
-        color: #ffffff !important;
+        color: #d1fae5 !important;
         font-weight: 500 !important;
         box-shadow: none !important;
     }
@@ -406,17 +418,22 @@ st.markdown("""
         color: #ffffff !important;
     }
 
-    /* Icons inside Sidebar Buttons */
-    [data-testid="stSidebar"] div.stButton button span[data-testid="stIconMaterial"] {
-        font-size: 24px !important;
-        color: #ffffff !important;
+    /* Icon (material icon span) inside sidebar buttons */
+    [data-testid="stSidebar"] div.stButton button span[data-testid="stIconMaterial"],
+    [data-testid="stSidebar"] div.stButton button [data-testid="stIconMaterial"] {
+        font-size: 22px !important;
+        color: inherit !important;
         line-height: 1 !important;
+        flex-shrink: 0 !important;
     }
+    /* Label text paragraph inside sidebar buttons */
     [data-testid="stSidebar"] div.stButton button p {
-        color: #ffffff !important;
+        color: inherit !important;
         margin: 0 !important;
-        font-size: 1.05rem !important;
-        line-height: 1.2 !important;
+        font-size: 1rem !important;
+        font-weight: inherit !important;
+        line-height: 1.3 !important;
+        text-align: left !important;
     }
 
     .page-title {font-size: 2.2rem; font-weight: 800; color: #14532d; margin-bottom: 0; display:flex; align-items:center; gap:12px;}
@@ -699,10 +716,21 @@ with col_farm:
 st.markdown("<br>", unsafe_allow_html=True)
 btn_icon_css = f"""
 <style>
-div.stButton > button::before {{
+/* Apply insights icon ONLY to the Generate Prediction button in the main content area */
+section.main div.stButton > button::before,
+[data-testid="stMain"] div.stButton > button::before {{
     content: ""; display:inline-block; width:18px; height:18px;
     background-image: url("data:image/svg+xml;base64,{icon_b64('insights')}");
     background-size: contain; background-repeat: no-repeat;
+}}
+
+/* Prevent the insights ::before icon from bleeding into sidebar nav buttons */
+[data-testid="stSidebar"] div.stButton > button::before {{
+    content: none !important;
+    display: none !important;
+    background-image: none !important;
+    width: 0 !important;
+    height: 0 !important;
 }}
 </style>
 """
