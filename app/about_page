@@ -1,0 +1,295 @@
+
+import streamlit as st
+
+
+def render_about():
+
+    # Hero section
+    st.markdown("""
+    <div class="about-hero">
+        <div class="about-content">
+            <div class="about-kicker">🌱 AI-POWERED AGRICULTURE</div>
+            <div class="about-title">About <span>AgriPredict</span></div>
+            <p style="font-size:20px;font-weight:800;color:#173126;">
+                AI-powered technology for smarter<br>
+                and more sustainable farming.
+            </p>
+            <div class="about-text">
+                AgriPredict is an AI/ML-based agricultural prediction
+                system designed to help farmers make data-driven crop
+                selection and yield estimation decisions using soil,
+                weather, location and agricultural data.
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Objectives
+    st.markdown(
+        '<div class="section-head">🎯 Our Objective</div>',
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        '<div class="section-sub">Helping farmers make informed decisions for a better tomorrow.</div>',
+        unsafe_allow_html=True
+    )
+
+    objectives = [
+        ("🌱", "Better Crop Selection",
+         "Recommend suitable crops based on soil and weather conditions."),
+        ("☀️", "Weather-Aware Decisions",
+         "Use weather information for the selected location and season."),
+        ("📊", "Yield Estimation",
+         "Predict expected crop yield using machine learning models."),
+        ("🌿", "Smarter Agriculture",
+         "Support informed and sustainable farming decisions.")
+    ]
+
+    cols = st.columns(4)
+
+    for col, (emoji, title, desc) in zip(cols, objectives):
+        with col:
+            st.markdown(f"""
+            <div class="objective-card">
+                <div style="font-size:34px;">{emoji}</div>
+                <div class="objective-title">{title}</div>
+                <div class="objective-text">{desc}</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+    # Process
+    st.markdown(
+        '<div class="section-head">⚙️ How <span>AgriPredict</span> Works</div>',
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        '<div class="section-sub">From farm input to AI-driven insights.</div>',
+        unsafe_allow_html=True
+    )
+
+    process = [
+        ("1. User Input", "📍",
+         "Select state, district, season and area. Enter N, P, K and soil pH."),
+        ("2. Weather Data", "☁️",
+         "Retrieve temperature, humidity and rainfall for the selected location."),
+        ("3. Crop Recommendation", "🌱",
+         "The classification model recommends a suitable crop."),
+        ("4. Crop Yield Prediction", "📊",
+         "The regression model estimates crop yield and total production.")
+    ]
+
+    cols = st.columns(4)
+
+    for col, (title, emoji, desc) in zip(cols, process):
+        with col:
+            st.markdown(f"""
+            <div class="process-card">
+                <div style="font-size:28px;">{emoji}</div>
+                <div class="process-title">{title}</div>
+                <p class="process-text">{desc}</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+    # Machine learning models
+    st.markdown(
+        '<div class="section-head">🌳 AI & <span>Machine Learning Models</span></div>',
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        '<div class="section-sub">Crop recommendation and crop yield estimation.</div>',
+        unsafe_allow_html=True
+    )
+
+    c1, c2 = st.columns(2)
+
+    with c1:
+        st.markdown("""
+        <div class="model-card" style="background:#f0fbf4;">
+            <div class="model-title">🌱 Crop Recommendation Model</div>
+            <p class="model-text">
+                Predicts a suitable crop based on soil and weather conditions.
+            </p>
+            <b>Input Features:</b>
+            <ul class="small-text">
+                <li>Nitrogen (N)</li>
+                <li>Phosphorus (P)</li>
+                <li>Potassium (K)</li>
+                <li>Soil pH</li>
+                <li>Temperature, humidity and rainfall</li>
+            </ul>
+            <b>Output:</b> Recommended crop
+        </div>
+        """, unsafe_allow_html=True)
+
+    with c2:
+        st.markdown("""
+        <div class="model-card" style="background:#f6f0ff;">
+            <div class="model-title">📊 Crop Yield Prediction Model</div>
+            <p class="model-text">
+                Estimates crop yield using location, season, crop and
+                environmental information.
+            </p>
+            <b>Input Features:</b>
+            <ul class="small-text">
+                <li>State and district</li>
+                <li>Season and crop</li>
+                <li>Farm area in hectares</li>
+                <li>Temperature and humidity</li>
+            </ul>
+            <b>Output:</b> Estimated yield and production
+        </div>
+        """, unsafe_allow_html=True)
+
+    # Datasets and data sources
+    st.markdown(
+        '<div class="section-head">🗄️ Datasets & Data Sources</div>',
+        unsafe_allow_html=True
+    )
+
+    left, right = st.columns([1.1, 0.9])
+
+    with left:
+        st.markdown("""
+        <div class="source-card">
+            <div class="source-title">📄 Crop Recommendation Dataset</div>
+            <div class="small-text">
+                Contains crop labels and agricultural parameters such as
+                soil nutrients, temperature, humidity and rainfall.
+            </div>
+            <hr>
+            <div class="source-title">📄 Yield Dataset</div>
+            <div class="small-text">
+                Historical crop yield information used to train or evaluate
+                the crop yield prediction model.
+            </div>
+            <hr>
+            <div class="source-title">☁️ Open-Meteo API</div>
+            <div class="small-text">
+                Provides weather information for the selected location.
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with right:
+        st.markdown(
+            '<div class="source-title" style="margin-bottom:8px;">💻 Technology Stack</div>',
+            unsafe_allow_html=True
+        )
+
+        technologies = [
+            ("🐍", "Python"),
+            ("🔢", "NumPy"),
+            ("🐼", "Pandas"),
+            ("📊", "Plotly"),
+            ("🤖", "Scikit-learn"),
+            ("⚙️", "Joblib"),
+            ("📱", "Streamlit"),
+            ("☁️", "Weather API")
+        ]
+
+        cols = st.columns(4)
+
+        for col, (emoji, name) in zip(cols, technologies):
+            with col:
+                st.markdown(f"""
+                <div class="tech-box">
+                    <div class="tech-icon">{emoji}</div>
+                    <div class="tech-name">{name}</div>
+                </div>
+                """, unsafe_allow_html=True)
+
+    # Team
+    st.markdown(
+        '<div class="section-head">👥 Our Team</div>',
+        unsafe_allow_html=True
+    )
+
+    team = [
+        "Yash B. Pawar",
+        "Om Patane",
+        "Prasad Kalyani",
+        "Sumit Shinde",
+        "Pritesh"
+    ]
+
+    cols = st.columns(5)
+
+    for col, name in zip(cols, team):
+        with col:
+            st.markdown(f"""
+            <div class="team-person">
+                <div class="avatar">👨‍💻</div>
+                <div class="person-name">{name}</div>
+                <div class="person-role">Team Member</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+    # Project links and contact
+    st.markdown(
+        '<div class="section-head">🔗 Project Links & Contact</div>',
+        unsafe_allow_html=True
+    )
+
+    c1, c2 = st.columns(2)
+
+    with c1:
+        st.markdown("""
+        <div class="contact-card">
+            <div class="contact-title">🔗 Project</div>
+            <div class="small-text">
+                Explore the project source code and documentation.
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.write("**GitHub:** Add your actual project repository URL below.")
+
+        st.text_input(
+            "GitHub repository URL",
+            key="about_github_url",
+            placeholder="https://github.com/username/repository"
+        )
+
+        if st.session_state.get("about_github_url", "").startswith("https://"):
+            st.link_button(
+                "Open GitHub Project",
+                st.session_state["about_github_url"]
+            )
+
+    with c2:
+        st.markdown("""
+        <div class="contact-card">
+            <div class="contact-title">✉️ Contact</div>
+            <div class="small-text">
+                For project-related questions and collaboration.
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.write("**Email:** Add your actual project email address.")
+
+    # Disclaimer
+    st.markdown(
+        '<div class="section-head">⚠️ Disclaimer</div>',
+        unsafe_allow_html=True
+    )
+
+    st.markdown("""
+    <div class="disclaimer">
+        AgriPredict provides machine-learning-based estimates for
+        educational and informational purposes. Predictions may vary
+        depending on soil conditions, weather changes, farming practices
+        and data quality. Results should not be considered a substitute
+        for professional agricultural advice.
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Footer
+    st.markdown("""
+    <div class="footer">
+        <div class="footer-title">🌱 AgriPredict</div>
+        <div class="footer-text">
+            AI for a Smarter, Greener Tomorrow • Academic Project • © 2026
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
